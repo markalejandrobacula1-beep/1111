@@ -6,112 +6,87 @@
 <title>Mark & Elena 💖 7 Months</title>
 <style>
 body {
-  margin: 0;
-  height: 100vh;
+  margin:0;
+  height:100vh;
   background: radial-gradient(circle at top, #ff4d6d, #ff9a9e, #ffd1dc);
-  font-family: 'Poppins', Arial, sans-serif;
-  overflow: hidden;
-  position: relative;
+  font-family:'Poppins', Arial, sans-serif;
+  overflow:hidden;
+  position:relative;
 }
-
 .card {
   background: rgba(255,255,255,0.95);
-  border-radius: 25px;
-  padding: 30px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  position: relative;
-  z-index: 5;
-  transition: all 0.3s ease;
+  border-radius:25px;
+  padding:30px;
+  width:90%;
+  max-width:400px;
+  text-align:center;
+  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+  position:relative;
+  z-index:5;
+  transition:all 0.3s ease;
 }
-
-h1 { color: #ff3366; margin: 0; }
-h2 { color: #ff6699; margin: 5px 0 15px; }
-p { color: #333; font-size: 18px; }
-
-input {
-  padding: 12px;
-  width: 80%;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+h1{color:#ff3366;margin:0;}
+h2{color:#ff6699;margin:5px 0 15px;}
+p{color:#333;font-size:18px;}
+input{
+  padding:12px;
+  width:80%;
+  border-radius:12px;
+  border:1px solid #ccc;
+  font-size:16px;
 }
-
-button {
-  padding: 12px 20px;
-  margin-top: 15px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  background: #ff3366;
-  color: white;
-  font-size: 16px;
-  transition: all 0.2s ease;
+button{
+  padding:12px 20px;
+  margin-top:15px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:#ff3366;
+  color:white;
+  font-size:16px;
+  transition:all 0.2s ease;
 }
-
-.hidden { display: none; }
-
-.no {
-  background: #ddd;
-  color: #333;
-  position: absolute;
+.hidden{display:none;}
+.no{
+  background:#ddd;
+  color:#333;
+  position:absolute;
 }
-
-.heart {
-  position: absolute;
-  font-size: 24px;
-  animation: float 4s linear infinite;
+.heart{
+  position:absolute;
+  font-size:24px;
+  animation:float 4s linear infinite;
 }
-
-@keyframes float {
-  from { transform: translateY(100vh); opacity: 1; }
-  to { transform: translateY(-10vh); opacity: 0; }
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
 }
-
-.confetti {
-  position: absolute;
-  font-size: 30px;
-  animation: explode 1.2s ease-out forwards;
+.confetti{
+  position:absolute;
+  font-size:30px;
+  animation:explode 1.2s ease-out forwards;
 }
-
-@keyframes explode {
-  0% { transform: scale(0); opacity: 1; }
-  100% { transform: scale(3); opacity: 0; }
+@keyframes explode{
+  0%{transform:scale(0);opacity:1;}
+  100%{transform:scale(3);opacity:0;}
 }
-
-.cat {
-  position: absolute;
-  width: 80px;
-  max-width: 25vw;
-  transition: all 0.3s ease;
-  z-index: 10;
+.cat{
+  position:absolute;
+  width:80px;
+  max-width:25vw;
+  transition:all 0.3s ease;
+  z-index:10;
 }
-
-#countdown {
-  font-size: 20px;
-  color: #ff3366;
-  margin-top: 10px;
-}
-
-#letter {
-  font-size: 18px;
-  color: #ff3366;
-  line-height: 1.5;
-  text-align: center;
-  margin-top: 15px;
-}
-
-.fullscreen-bg {
-  position: fixed;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
+#countdown{font-size:20px;color:#ff3366;margin-top:10px;}
+#letter{font-size:18px;color:#ff3366;line-height:1.5;text-align:center;margin-top:15px;}
+.fullscreen-bg{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
   background: radial-gradient(circle at top, #ff4d6d, #ff9a9e, #ffd1dc);
-  z-index: 20;
-  overflow: hidden;
+  z-index:20;
+  overflow:hidden;
 }
 </style>
 </head>
@@ -161,6 +136,8 @@ const correctPassword = "07142025";
 const music = document.getElementById("music");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
+const main = document.getElementById("main");
+const final = document.getElementById("final");
 
 // Countdown
 const valentinesDate = new Date("February 14, 2026 00:00:00").getTime();
@@ -178,10 +155,8 @@ setInterval(() => {
 function unlock() {
   if(document.getElementById("password").value === correctPassword){
     document.getElementById("lock").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
+    main.classList.remove("hidden");
     music.play();
-    hearts();
-    setupNoButton();
   } else { 
     document.getElementById("error").style.display = "block"; 
   }
@@ -189,125 +164,91 @@ function unlock() {
 
 // NO button infinite chaos & YES grows
 let yesScale = 1;
-function setupNoButton(){
-  const moveNo = (event) => {
-    const noRect = noBtn.getBoundingClientRect();
-    let x = event.clientX || event.touches?.[0].clientX;
-    let y = event.clientY || event.touches?.[0].clientY;
+noBtn.addEventListener("click", ()=>{
+  // Move NO randomly
+  noBtn.style.left = Math.random()*70 + "%";
+  noBtn.style.top = Math.random()*70 + "%";
 
-    if(x >= noRect.left - 50 && x <= noRect.right + 50 &&
-       y >= noRect.top - 50 && y <= noRect.bottom + 50) {
+  // Show crying cat GIF
+  showNoCat();
 
-      // Move NO randomly
-      noBtn.style.left = Math.random() * 80 + "%";
-      noBtn.style.top = Math.random() * 80 + "%";
+  // Grow YES button
+  yesScale += 0.2;
+  yesBtn.style.transform = `scale(${yesScale})`;
+});
 
-      // Show crying chibi cat
-      showCat();
-
-      // Floating sad cat
-      showRandomCats();
-
-      // Grow YES button gradually
-      yesScale += 0.05;
-      yesBtn.style.transform = `scale(${yesScale})`;
-      if(yesScale >= 10) yesBtn.style.width = "100vw"; // max screen coverage
-    }
-  };
-
-  document.addEventListener("mousemove", moveNo);
-  document.addEventListener("touchmove", moveNo);
-}
-
-// Show sad chibi cat on NO hover
-function showCat() {
+function showNoCat(){
   const cat = document.createElement("img");
+  cat.src = "https://media.tenor.com/Z8eRzWjXyz0AAAAM/blubbering-sad-white-cat.gif";
   cat.className = "cat";
-  cat.src = "https://media.tenor.com/Z8eRzWjXyz0AAAAM/blubbering-sad-white-cat.gif"; // sad cat GIF
-  cat.style.left = Math.random()*70 + "%";
-  cat.style.top = Math.random()*70 + "%";
+  cat.style.left = Math.random()*80 + "%";
+  cat.style.top = Math.random()*80 + "%";
   document.body.appendChild(cat);
-  setTimeout(()=>cat.remove(), 2500);
+  setTimeout(()=>cat.remove(),3000);
 }
 
-// Floating sad cats
-function showRandomCats(){
-  const c = document.createElement("img");
-  c.className = "cat";
-  c.src = "https://media.tenor.com/Z8eRzWjXyz0AAAAM/blubbering-sad-white-cat.gif";
-  c.style.left=Math.random()*90+"%";
-  c.style.top=Math.random()*90+"%";
-  c.style.width="50px";
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(), 3000);
+// YES button celebration
+function yes(){
+  main.classList.add("hidden");
+  final.classList.remove("hidden");
+  spawnHappyCats();
+  spawnHearts();
+  spawnConfetti();
 }
 
-// YES button full-screen Valentine
-function yes() {
-  document.getElementById("main").classList.add("hidden");
-  const fullBg = document.createElement("div");
-  fullBg.className = "fullscreen-bg";
-  document.body.appendChild(fullBg);
-  document.getElementById("final").classList.remove("hidden");
-
-  hearts();
-  confetti();
-  floatHappyCats();
-}
-
-// Hearts floating
-function hearts(){
-  setInterval(()=>{
-    const h=document.createElement("div");
-    h.className="heart";
-    h.textContent="💖";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),4000);
-  },300);
-}
-
-// Confetti animation
-function confetti(){
-  for(let i=0;i<100;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.textContent="🎊";
-    c.style.left=Math.random()*100+"vw";
-    c.style.top=Math.random()*100+"vh";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),2000);
-  }
-}
-
-// View letter button
-function viewLetter() {
+function viewLetter(){
   document.getElementById("letter").classList.remove("hidden");
 }
 
-// Floating happy cats on YES
-function floatHappyCats(){
+// Floating happy cats from YES button
+function spawnHappyCats(){
   for(let i=0;i<10;i++){
     setTimeout(()=>{
       const cat = document.createElement("img");
+      cat.src = "https://media.tenor.com/CLfOevxdw_wAAAAM/kiss-cute.gif";
       cat.className="cat";
-      cat.src="https://media.tenor.com/CLfOevxdw_wAAAAM/kiss-cute.gif"; // happy cat GIF
-      cat.style.left=yesBtn.getBoundingClientRect().left + "px";
-      cat.style.top=yesBtn.getBoundingClientRect().top + "px";
+      cat.style.left=(yesBtn.offsetLeft + yesBtn.offsetWidth/2)+"px";
+      cat.style.top=(yesBtn.offsetTop + yesBtn.offsetHeight/2)+"px";
       document.body.appendChild(cat);
-
-      let top = yesBtn.getBoundingClientRect().top;
+      let top = yesBtn.offsetTop + yesBtn.offsetHeight/2;
       const id = setInterval(()=>{
-        top -= 2;
+        top-=2;
         cat.style.top = top + "px";
-        if(top < -100) {
-          clearInterval(id);
-          cat.remove();
-        }
-      }, 20);
-    }, i*300);
+        if(top<-100){clearInterval(id);cat.remove();}
+      },20);
+    },i*200);
+  }
+}
+
+// Hearts floating
+function spawnHearts(){
+  for(let i=0;i<20;i++){
+    setTimeout(()=>{
+      const h = document.createElement("div");
+      h.className="heart";
+      h.textContent="💖";
+      h.style.left=Math.random()*100+"vw";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),4000);
+    }, i*150);
+  }
+}
+
+// Confetti animation
+function spawnConfetti(){
+  for(let i=0;i<30;i++){
+    setTimeout(()=>{
+      const c = document.createElement("div");
+      c.className="confetti";
+      c.textContent="🎊";
+      c.style.left=Math.random()*100+"vw";
+      c.style.top=Math.random()*100+"vh";
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),2000);
+    },i*100);
   }
 }
 </script>
+
 </body>
 </html>
